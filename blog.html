@@ -1,5 +1,4 @@
-<?php include 'includes/products.php'; ?>
-<?php include 'includes/testmonials_data.php'; ?>
+<!-- Static Version -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +13,14 @@
 
 <body>
 <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <a class="navbar__logo" href="index.php" aria-label="Darine Home">DARINE</a>
+    <a class="navbar__logo" href="index.html" aria-label="Darine Home">DARINE</a>
 
     <ul class="navbar__links">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="shop.php">Shop</a></li>
-      <li><a href="quiz.php">Quiz</a></li>
-      <li><a href="blog.php" class="is-active">Blog</a></li>
-      <li><a href="contact.php">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="blog.html" class="is-active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
     <div class="navbar__icons">
@@ -33,7 +32,7 @@
         </svg>
       </button>
       <!-- Shopping bag -->
-      <button aria-label="Shopping bag" onclick="window.location.href='cart.php'" style="position:relative">
+      <button aria-label="Shopping bag" onclick="window.location.href='cart.html'" style="position:relative">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -66,7 +65,7 @@
                 <span class="date">April 28, 2026</span>
                 <h2>Behind the Scent: Midnight Rose</h2>
                 <p>The story behind our bestselling fragrance, crafted with rare petals from the Grasse region.</p>
-                <a href="article.php" class="read-more">READ MORE &rarr;</a>
+                <a href="article.html" class="read-more">READ MORE &rarr;</a>
             </div>
         </div>
     </section>
@@ -86,12 +85,14 @@
 
             <div class="lab-container">
                 <div class="lab-track" id="labTrack">
-                    <?php foreach($bundles as $index => $bundle): ?>
-                        <div class="combo-card" onclick="openBundle(<?php echo $index; ?>)">
-                            <h4><?php echo $bundle['bundle_name']; ?></h4>
-                            <span class="view-products"><?php echo $bundle['vibe']; ?></span>
+                        <div class="combo-card" onclick="openBundle(0)">
+                            <h4>The Gilded Oud</h4>
+                            <span class="view-products">Opulent & Mysterious</span>
                         </div>
-                    <?php endforeach; ?>
+                        <div class="combo-card" onclick="openBundle(1)">
+                            <h4>The Solar Cotton</h4>
+                            <span class="view-products">Crisp, Clean & Polished</span>
+                        </div>
                 </div>
             </div>
 
@@ -102,27 +103,27 @@
     <section id="testimonials" class="testimonials">
 
         <div class="testimonial-box">
-            <?php foreach($celebrityReviews as $index => $cel): ?>
-                <div class="review <?php echo $index === 0 ? 'active' : ''; ?>">
-                    <blockquote>"<?php echo $cel['quote']; ?>"</blockquote>
-                    <cite>— <?php echo $cel['name']; ?></cite>
-                    <span class="wearing-tag">Wearing: <?php echo $cel['scent']; ?></span>
+                <div class="review active">
+                    <blockquote>"A scent that feels like a forgotten dream."</blockquote>
+                    <cite>— Zendaya</cite>
+                    <span class="wearing-tag">Wearing: Midnight Rose</span>
                 </div>
-            <?php endforeach; ?>
+                <div class="review">
+                    <blockquote>"This is my new staple. So fresh and clean."</blockquote>
+                    <cite>— Hailey Bieber</cite>
+                    <span class="wearing-tag">Wearing: Sea Salt & Sage</span>
+                </div>
         </div>
 
         <div class="customer-reviews-grid">
-            <?php foreach($customerReviews as $rev): ?>
                 <div class="review-card-perimeter">
-                    <span class="stars"><?php echo $rev['stars']; ?></span>
-                    <p class="rev-text"><?php echo $rev['review']; ?></p>
-
+                    <span class="stars">★★★★★</span>
+                    <p class="rev-text">The most sophisticated rose scent I have ever owned. It lasts all day on my linen shirts.</p>
                     <div class="rev-footer">
-                        <strong class="reviewer"><?php echo $rev['reviewer']; ?></strong>
-                        <span class="wearing">- Wearing: <?php echo $rev['scent']; ?></span>
+                        <strong class="reviewer">Poppy W.</strong>
+                        <span class="wearing">- Wearing: Midnight Rose</span>
                     </div>
                 </div>
-            <?php endforeach; ?>
         </div>
 
     </section>
@@ -217,8 +218,23 @@
 <div id="cartPopup" class="cart-popup"></div>
 
 <script>
-    const perfumeBundles = <?php echo json_encode($bundles); ?>;
-    const perfumeData = <?php echo json_encode($perfumeBrand); ?>;
+    const perfumeBundles = [
+        {
+            "bundle_name": "The Gilded Oud",
+            "vibe": "Opulent & Mysterious",
+            "layering_steps": {
+                "Base": "Essence of Oud (Perfume Oil)",
+                "Heart": "Oud Nocturne (Eau de Parfum)",
+                "Finish": "Vanilla Cloud (Body and Hair Mist)"
+            },
+            "description": "A deep, resinous combination where aged agarwood is softened by liquid honey and a weightless veil of marshmallow."
+        }
+    ];
+    const perfumeData = {
+        "Eau de Parfum": [],
+        "Perfume Oils": [],
+        "Body and Hair Mists": []
+    };
 </script>
 
 <script src="js/cart_global.js"></script>

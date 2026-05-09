@@ -1,13 +1,10 @@
-<?php 
-include 'includes/products.php'; 
-$roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
-?>
+<!-- Static Version -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behind the Scent: <?php echo $roseData['name']; ?></title>
+    <title>Behind the Scent: Midnight Rose</title>
 
     <link rel="stylesheet" href="css/article_styling.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,14 +12,14 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
 
 <body class="editorial-page">
 <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <a class="navbar__logo" href="index.php" aria-label="Darine Home">DARINE</a>
+    <a class="navbar__logo" href="index.html" aria-label="Darine Home">DARINE</a>
 
     <ul class="navbar__links">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="shop.php">Shop</a></li>
-      <li><a href="quiz.php">Quiz</a></li>
-      <li><a href="blog.php" class="is-active">Blog</a></li>
-      <li><a href="contact.php">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="blog.html" class="is-active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
     <div class="navbar__icons">
@@ -34,7 +31,7 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
         </svg>
       </button>
       <!-- Shopping bag -->
-      <button aria-label="Shopping bag" onclick="window.location.href='cart.php'" style="position:relative">
+      <button aria-label="Shopping bag" onclick="window.location.href='cart.html'" style="position:relative">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -56,7 +53,7 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
         <span class="label">THE BEST SELLER</span>
 
         <h2 class="MidnightRoseTitle">
-            Behind the Scent: <?php echo $roseData['name']; ?>
+            Behind the Scent: Midnight Rose
         </h2>
     </div>
 </section>
@@ -71,21 +68,21 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
 
             <div class="text-content">
                 <p>
-                    <?php echo $roseData['name']; ?> was never meant to be just another rose fragrance. 
+                    Midnight Rose was never meant to be just another rose fragrance. 
                     It began as a study of contrast — softness and depth, delicacy and shadow. 
                     We wanted to capture the exact moment when a rose is no longer fresh, but not yet fading — 
                     that quiet, emotional space where scent becomes memory.
                 </p>
 
                 <p>
-                    The opening introduces a subtle tension: <?php echo $roseData['notes']['top']; ?>. 
+                    The opening introduces a subtle tension: Blackcurrant, Pink Pepper. 
                     There’s a brightness, but it never feels loud. Instead, it dissolves gently into a floral core 
-                    built around <?php echo $roseData['notes']['middle']; ?> — layered, dimensional, and slightly mysterious.
+                    built around Damask Rose, Night-Blooming Jasmine — layered, dimensional, and slightly mysterious.
                 </p>
 
                 <p>
                     As it settles, the fragrance reveals its true character. The base of 
-                    <?php echo $roseData['notes']['base']; ?> adds depth and a soft darkness, 
+                    Patchouli, Dark Agarwood adds depth and a soft darkness, 
                     giving the scent a long, elegant trail that stays close to the skin.
                 </p>
             </div>
@@ -127,7 +124,7 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
 
             <p>
                 Ideal for intimate settings — dinners, events, or quiet nights — 
-                <?php echo $roseData['name']; ?> creates a soft yet unforgettable presence. 
+                Midnight Rose creates a soft yet unforgettable presence. 
                 It’s not overpowering, but it lingers in a way that feels intentional.
             </p>
 
@@ -144,7 +141,7 @@ $roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
         <div class="quote-box reveal">
 
             <blockquote>
-                "<?php echo $roseData['name']; ?> feels like a memory rather than a scent — 
+                "Midnight Rose feels like a memory rather than a scent — 
                 soft, emotional, and impossible to forget."
             </blockquote>
 

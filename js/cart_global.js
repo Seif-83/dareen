@@ -125,9 +125,9 @@ function handleSearch(event) {
 
   if (event.key === "Enter") {
     if (query) {
-      window.location.href = `shop.php?q=${encodeURIComponent(query)}`;
+      window.location.href = `shop.html?q=${encodeURIComponent(query)}`;
     } else {
-      window.location.href = `shop.php`; // Clear search
+      window.location.href = `shop.html`; // Clear search
     }
   }
 }
