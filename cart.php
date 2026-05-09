@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darine | Cart</title>
+
+    <link rel="stylesheet" href="css/cart_styling.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+ <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="navbar__logo" href="index.php" aria-label="Darine Home">DARINE</a>
+
+    <ul class="navbar__links">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="shop.php">Shop</a></li>
+      <li><a href="quiz.php">Quiz</a></li>
+      <li><a href="blog.php">Blog</a></li>
+      <li><a href="contact.php">Contact</a></li>
+    </ul>
+
+    <div class="navbar__icons">
+      <!-- Search -->
+      <button aria-label="Search" onclick="toggleSearch()">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
+      <!-- Shopping bag -->
+      <button aria-label="Shopping bag" onclick="toggleCart()" style="position:relative"  class="is-active">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span id="cartBadge" class="cart-badge" style="display:none">0</span>
+      </button>
+    </div>
+  </nav>
+
+<header class="cart-header">
+    <h1>Your Cart</h1>
+
+   
+</header>
+
+<main class="cart-page">
+
+    <script src="js/cart_global.js"></script>
+
+    <section id="cartContainer"></section>
+
+    <section class="cart-summary">
+    <h2>Order Summary</h2>
+
+    <p>Total Items: <span id="cartCount">0</span></p>
+    <p>Total Payment: $<span id="cartTotal">0</span></p>
+
+    <button class="checkout-btn" onclick="goToCheckout()">
+        Checkout
+    </button>
+
+    <button class="clear-btn" onclick="clearCart()">
+        Clear Cart
+    </button>
+</section>
+
+</main>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("darineCart")) || [];
+
+const cartContainer = document.getElementById("cartContainer");
+const cartCount = document.getElementById("cartCount");
+
+const cartTotal = document.getElementById("cartTotal");
+
+function displayCart() {
+    let totalItems = 0;
+    let totalPayment = 0;
+    
+    cartContainer.innerHTML = ""; // Clear container
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = `
+            <div class="empty-cart">
+                Your cart is empty.
+            </div>
+        `;
+        cartCount.innerText = "0";
+        cartTotal.innerText = "0";
+        return;
+    }
+
+    cart.forEach(function(item, index) {
+        // Calculations
+        totalItems += item.quantity;
+        totalPayment += (item.price || 0) * item.quantity;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+
+        // Safety checks for rendering
+        const categoriesStr = Array.isArray(item.categories) ? item.categories.join(", ") : "N/A";
+        const topNote = (item.notes && item.notes.top) ? item.notes.top : "N/A";
+        const middleNote = (item.notes && item.notes.middle) ? item.notes.middle : "N/A";
+        const baseNote = (item.notes && item.notes.base) ? item.notes.base : "N/A";
+
+        div.innerHTML = `
+            <div class="cart-img"></div>
+
+            <div class="cart-details">
+                <span class="cart-type">${item.type}</span>
+
+                <h3>${item.name}</h3>
+
+                <p class="cart-description">${item.description || ""}</p>
+
+                <p><strong>Quantity:</strong> ${item.quantity}</p>
+
+                <p><strong>Gender:</strong> ${item.gender || "unisex"}</p>
+
+                <p><strong>Category:</strong> ${categoriesStr}</p>
+
+                <p class="cart-notes">
+                    <strong>Top:</strong> ${topNote}<br>
+                    <strong>Heart:</strong> ${middleNote}<br>
+                    <strong>Base:</strong> ${baseNote}
+                </p>
+            </div>
+
+            <div class="cart-actions">
+                <button onclick="decreaseQty(${index})">-</button>
+                <button onclick="increaseQty(${index})">+</button>
+                <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+        `;
+
+        cartContainer.appendChild(div);
+    });
+
+    cartCount.innerText = totalItems;
+    cartTotal.innerText = totalPayment;
+}
+
+function increaseQty(index) {
+    cart[index].quantity = cart[index].quantity + 1;
+    localStorage.setItem("darineCart", JSON.stringify(cart));
+    displayCart();
+}
+
+function decreaseQty(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity = cart[index].quantity - 1;
+    } else {
+        cart.splice(index, 1);
+    }
+
+    localStorage.setItem("darineCart", JSON.stringify(cart));
+    displayCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("darineCart", JSON.stringify(cart));
+    displayCart();
+}
+
+function clearCart() {
+    cart = [];
+    localStorage.removeItem("darineCart");
+    displayCart();
+}
+
+function goToCheckout() {
+    window.location.href = "checkout.php";
+}
+
+displayCart();
+</script>
+
+</body>
+</html>

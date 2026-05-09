@@ -1,0 +1,207 @@
+<?php 
+include 'includes/products.php'; 
+$roseData = $perfumeBrand['Eau de Parfum'][0]; // Midnight Rose
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behind the Scent: <?php echo $roseData['name']; ?></title>
+
+    <link rel="stylesheet" href="css/article_styling.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body class="editorial-page">
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a class="navbar__logo" href="index.php" aria-label="Darine Home">DARINE</a>
+
+    <ul class="navbar__links">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="shop.php">Shop</a></li>
+      <li><a href="quiz.php">Quiz</a></li>
+      <li><a href="blog.php" class="is-active">Blog</a></li>
+      <li><a href="contact.php">Contact</a></li>
+    </ul>
+
+    <div class="navbar__icons">
+      <!-- Search -->
+      <button aria-label="Search" onclick="toggleSearch()">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <!-- Shopping bag -->
+      <button aria-label="Shopping bag" onclick="window.location.href='cart.php'" style="position:relative">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span id="cartBadge" class="cart-badge" style="display:none">0</span>
+      </button>
+    </div>
+  </nav>
+<main class="editorial-container">
+
+    <!-- HERO -->
+   <section class="hero-section">
+    <div class="hero-box">
+        <img src="assets/midnightrosehero.png" alt="Midnight Rose">
+    </div>
+
+    <div class="hero-header reveal">
+        <span class="label">THE BEST SELLER</span>
+
+        <h2 class="MidnightRoseTitle">
+            Behind the Scent: <?php echo $roseData['name']; ?>
+        </h2>
+    </div>
+</section>
+
+    <!-- STORY / SCENT DESCRIPTION -->
+    <section class="content-section">
+        <div class="story-wrapper reveal">
+
+            <div class="small-side-img">
+                <img src="assets/midnightrose1.png"/>
+            </div>
+
+            <div class="text-content">
+                <p>
+                    <?php echo $roseData['name']; ?> was never meant to be just another rose fragrance. 
+                    It began as a study of contrast — softness and depth, delicacy and shadow. 
+                    We wanted to capture the exact moment when a rose is no longer fresh, but not yet fading — 
+                    that quiet, emotional space where scent becomes memory.
+                </p>
+
+                <p>
+                    The opening introduces a subtle tension: <?php echo $roseData['notes']['top']; ?>. 
+                    There’s a brightness, but it never feels loud. Instead, it dissolves gently into a floral core 
+                    built around <?php echo $roseData['notes']['middle']; ?> — layered, dimensional, and slightly mysterious.
+                </p>
+
+                <p>
+                    As it settles, the fragrance reveals its true character. The base of 
+                    <?php echo $roseData['notes']['base']; ?> adds depth and a soft darkness, 
+                    giving the scent a long, elegant trail that stays close to the skin.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INSPIRATION -->
+    <section class="inspo">
+        <div class="text-content" style="max-width: 700px; margin: auto;">
+
+            <h3>The Inspiration</h3>
+
+            <p>
+                Midnight Rose was inspired by late evenings in quiet gardens — when the air cools, 
+                and the scent of flowers becomes deeper, almost intoxicating. 
+                Not the bright rose of daylight, but a darker, more intimate interpretation.
+            </p>
+
+            <p>
+                We worked with petals sourced from the Grasse region, known for producing some of the 
+                most refined floral extracts in the world. The goal was not realism, but emotion — 
+                to create a rose that feels personal, almost nostalgic.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- WHEN TO WEAR -->
+    <section class="whentowear">
+        <div class="text-content" style="max-width: 700px; margin: auto;">
+
+            <h3>When to Wear</h3>
+
+            <p>
+                This is a fragrance that belongs to the evening. It performs best in cooler air, 
+                where its deeper notes can unfold slowly and naturally.
+            </p>
+
+            <p>
+                Ideal for intimate settings — dinners, events, or quiet nights — 
+                <?php echo $roseData['name']; ?> creates a soft yet unforgettable presence. 
+                It’s not overpowering, but it lingers in a way that feels intentional.
+            </p>
+
+            <p>
+                For daytime, a lighter application reveals its floral side, making it versatile 
+                without losing its signature depth.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonials-editorial">
+        <div class="quote-box reveal">
+
+            <blockquote>
+                "<?php echo $roseData['name']; ?> feels like a memory rather than a scent — 
+                soft, emotional, and impossible to forget."
+            </blockquote>
+
+            <cite>— Zendaya</cite>
+
+        </div>
+    </section>
+
+
+
+</main>
+
+</body>
+
+<!-- SCRIPT -->
+<script src="js/cart_global.js"></script>
+<script>
+
+// Scroll Reveal Logic
+function handleReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(reveal => {
+        observer.observe(reveal);
+    });
+}
+
+// Smooth Page Transition Logic
+document.addEventListener("DOMContentLoaded", () => {
+
+    handleReveal();
+
+    const readMoreLinks = document.querySelectorAll(".read-more");
+
+    readMoreLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const destination = this.getAttribute("href");
+
+            document.body.classList.add("fade-out");
+
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 600);
+        });
+    });
+
+});
+
+</script>
+</html>

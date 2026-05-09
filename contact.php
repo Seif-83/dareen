@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darane Contact</title>
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo"><a href="index.php" style="color:inherit;text-decoration:none;">DARINE</a></div>
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="shop.php">Shop</a>
+        <a href="quiz.php">Quiz</a>
+        <a href="blog.php">Blog</a>
+        <a href="contact.php">Contact</a>
+    </nav>
+    <div class="navbar__icons">
+
+    <!-- Search -->
+    <button aria-label="Search" onclick="toggleSearch()">
+        <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </svg>
+    </button>
+
+    <!-- Shopping bag -->
+    <button aria-label="Shopping bag" style="position:relative;" onclick="window.location.href='cart.php'">
+        <svg viewBox="0 0 24 24">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+
+        <!-- Badge -->
+        <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+    </button>
+
+</div>
+</header>
+
+<!-- Main Section -->
+<section class="contact-section">
+
+    <!-- Left -->
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+
+        <div class="info">
+            <p><strong>PHONE</strong><br>01099883354</p>
+            <p><strong>EMAIL</strong><br>contact@darene.com</p>
+            <p><strong>LOCATION</strong><br>
+                123 Main Street<br>
+               Maady , New Giza , Egypt
+            </p>
+        </div>
+    </div>
+
+    <!-- Right -->
+    <div class="contact-form">
+        <form>
+            <label>NAME</label>
+            <input type="text" placeholder="Your name">
+
+            <label>EMAIL</label>
+            <input type="email" placeholder="your@email.com">
+
+            <label>MESSAGE</label>
+            <textarea placeholder="Your message"></textarea>
+
+            <button type="submit">SEND MESSAGE</button>
+        </form>
+    </div>
+
+</section>
+
+<script src="js/cart_global.js"></script>
+</body>
+</html>

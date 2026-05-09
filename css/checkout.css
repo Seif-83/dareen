@@ -1,0 +1,523 @@
+/* ============================================================
+   DARINE – style.css
+   Perfume e-commerce · Checkout page
+   ============================================================ */
+
+/* ── RESET & VARIABLES ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream:      #f5f0ea;
+  --warm:       #ede7de;
+  --border:     #d8cfc5;
+  --text:       #6b4285;
+  --muted:      #7a6f65;
+  --purple:     #3b2f4a;
+  --purple-h:   #2e2439;
+  --white:      #ffffff;
+  --success:    #4a7c59;
+  --error:      #b94a3b;
+  --radius:     4px;
+  --transition: 0.22s ease;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── NAVIGATION ── */
+nav {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  transition: box-shadow var(--transition);
+}
+
+nav.scrolled {
+  box-shadow: 0 2px 20px rgba(44, 38, 32, 0.08);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.logo:hover { color: var(--purple); }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--purple);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover { color: var(--purple); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-icons svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text);
+  fill: none;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: stroke var(--transition);
+}
+.nav-icons svg:hover { stroke: var(--purple); }
+
+/* Cart badge */
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--purple);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── SEARCH BAR ── */
+.search-bar {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 48px;
+  background: var(--warm);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-bar.active { display: flex; }
+
+.search-bar input {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 2px;
+  padding: 10px 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  transition: color var(--transition);
+}
+.search-bar button:hover { color: var(--text); }
+
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 52px;
+  color: var(--text);
+  animation: fadeDown 0.6s ease both;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.form-row.single  { grid-template-columns: 1fr; }
+.form-row.triple  { grid-template-columns: 1fr 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+input {
+  border: 1px solid var(--border);
+  background: var(--cream);
+  border-radius: 2px;
+  padding: 12px 14px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+input::placeholder { color: #b0a89f; }
+
+input:focus {
+  border-color: var(--purple);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(59, 47, 74, 0.08);
+}
+
+input.input-error  { border-color: var(--error); }
+input.input-valid  { border-color: var(--success); }
+
+.error-msg {
+  font-size: 11px;
+  color: var(--error);
+  letter-spacing: 0.03em;
+  min-height: 16px;
+}
+
+/* ── PAYMENT SECTION ── */
+.payment-section {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.whatsapp-payment-box {
+  background: #f8f9fa;
+  border: 1px solid #25d366;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.whatsapp-icon-circle {
+  background: #25d366;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.whatsapp-icon-circle svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+.whatsapp-info h4 {
+  color: #128c7e;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.whatsapp-info p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.whatsapp-number {
+  font-weight: 700;
+  color: #075e54;
+}
+
+.expiry-cvv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* ── ORDER SUMMARY ── */
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  position: sticky;
+  top: 88px;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.summary-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+
+.item-info .item-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.item-info .item-qty {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.item-price {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.summary-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.summary-row svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--muted);
+  fill: none;
+  stroke-width: 1.5;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 16px;
+}
+
+/* ── BUTTON ── */
+.btn-order {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 16px;
+  background: var(--purple);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s;
+}
+
+.btn-order:hover  { background: var(--purple-h); transform: translateY(-1px); }
+.btn-order:active { transform: translateY(0); }
+.btn-order:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* ── SPINNER ── */
+.spinner {
+  display: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-top-color: var(--purple);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 16px auto 0;
+}
+.spinner.active { display: block; }
+
+/* ── ORDER MESSAGE ── */
+.order-msg {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 2px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+.order-msg.success {
+  display: block;
+  background: rgba(74, 124, 89, 0.08);
+  color: var(--success);
+  border: 1px solid rgba(74, 124, 89, 0.25);
+}
+.order-msg.error {
+  display: block;
+  background: rgba(185, 74, 59, 0.08);
+  color: var(--error);
+  border: 1px solid rgba(185, 74, 59, 0.25);
+}
+
+/* ── TOAST NOTIFICATION ── */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: var(--white);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 500;
+  white-space: nowrap;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-card {
+    position: static;
+    order: -1; /* summary first on mobile */
+  }
+}
+
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; } /* hide on very small screens */
+  .form-card { padding: 24px 20px; }
+  .summary-card { padding: 24px 20px; }
+  .form-row.triple { grid-template-columns: 1fr; }
+  h1 { margin-bottom: 32px; }
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DARINE</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+
+    <div class="logo">DARINE</div>
+
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="shop.php">Shop</a>
+        <a href="quiz.php">Quiz</a>
+        <a href="blog.php">Blog</a>
+        <a href="contact.php">Contact</a>
+    </nav>
+
+    <div class="navbar__icons">
+
+        <!-- Search -->
+        <button aria-label="Search" onclick="toggleSearch()">
+            <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        </button>
+
+        <!-- Shopping bag -->
+        <button aria-label="Shopping bag" style="position:relative;" onclick="toggleCart()">
+            <svg viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+
+            <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+<!-- CART OVERLAY -->
+<div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+<!-- CART DRAWER -->
+<aside id="cartDrawer" class="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-drawer__header">
+        <h3 class="cart-drawer__title">My Cart</h3>
+        <button class="cart-drawer__close" onclick="toggleCart()" aria-label="Close cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody">
+        <div class="cart__empty">
+            <p>Your cart is empty</p>
+        </div>
+    </div>
+    <div class="cart-drawer__footer" id="cartFooter"></div>
+</aside>
+
+<!-- Cart Popup Notification -->
+<div id="cartPopup" class="cart-popup"></div>
+
+<!-- Date -->
+<p id="date" style="
+    text-align:center;
+    margin-top:10px;
+    font-family:'Jost', sans-serif;
+    font-size:13px;
+    letter-spacing:2px;
+    color:#7a6e68;
+"></p>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Sensual Elegance</h1>
+    <p>A fragrance journey beyond the ordinary</p>
+
+    <a href="shop.php">
+        <button>DISCOVER COLLECTION</button>
+    </a>
+</section>
+
+<!-- About -->
+<section class="about">
+    <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+            Darine crafts extraordinary fragrances that transcend time.
+            Each scent is a story, carefully composed to evoke emotion and memory.
+            Our perfumes are created for those who seek more than a fragrance —
+            they seek an experience.
+        </p>
+    </div>
+
+    <div class="about-img">
+        <img src="assets/home.2.jpeg" alt="About Darine" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius);">
+    </div>
+</section>
+
+<!-- Vision -->
+<section class="vision">
+    <h2>Our Vision</h2>
+    <p>
+        To redefine luxury perfumery through artistry, innovation,
+        and timeless sophistication.
+    </p>
+</section>
+
+<!-- Featured -->
+<section class="featured">
+
+    <h2>Featured Collection</h2>
+
+    <div class="products">
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="assets/midnight_rose.png" alt="Midnight Rose">
+                <button class="add-btn" onclick="addToCart({name: 'Midnight Rose', type: 'Eau de Parfum', gender: 'for her', categories: ['Floral', 'Woody'], description: 'A hauntingly beautiful tribute to the queen of flowers.', notes: {top: 'Blackcurrant, Pink Pepper', middle: 'Damask Rose, Night-Blooming Jasmine', base: 'Patchouli, Dark Agarwood'}, price: 180})">Add to Cart</button>
+            </div>
+            <h4>Midnight Rose</h4>
+            <p>$180</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="assets/santal_serenity.png" alt="Santal Serenity">
+                <button class="add-btn" onclick="addToCart({name: 'Santal Serenity', type: 'Eau de Parfum', gender: 'unisex', categories: ['Woody', 'Clean'], description: 'A minimalist masterpiece of creamy sandalwood.', notes: {top: 'Cardamom, Papyrus', middle: 'Iris, Violet', base: 'Sandalwood, Cedarwood'}, price: 180})">Add to Cart</button>
+            </div>
+            <h4>Santal Serenity</h4>
+            <p>$180</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="assets/amber_velvet.png" alt="Amber Velvet">
+                <button class="add-btn" onclick="addToCart({name: 'Amber Velvet', type: 'Eau de Parfum', gender: 'unisex', categories: ['Sweet', 'Woody'], description: 'A rich, resinous journey in a golden embrace.', notes: {top: 'Bergamot, Nutmeg', middle: 'Benzoin, Myrrh', base: 'Golden Amber, Vanilla'}, price: 180})">Add to Cart</button>
+            </div>
+            <h4>Amber Velvet</h4>
+            <p>$180</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Bestseller -->
+<section class="bestseller">
+
+    <h2>Bestseller</h2>
+    <h3>Midnight Rose</h3>
+    <p>A captivating blend of damascus rose, oud, and vanilla</p>
+
+    <a href="shop.php">
+        <button class="explore-btn">EXPLORE</button>
+    </a>
+
+</section>
+
+<!-- Script -->
+<script>
+    const dateElement = document.getElementById("date");
+    const today = new Date();
+    dateElement.innerText = "Today: " + today.toLocaleDateString();
+</script>
+
+<script src="js/cart_global.js"></script>
+<script>
+    // Home-specific cart drawer logic (similar to quiz.js but simplified)
+    function toggleCart() {
+        const drawer = document.getElementById('cartDrawer');
+        const overlay = document.getElementById('cartOverlay');
+        const isOpen = drawer.classList.contains('is-open');
+        if (isOpen) {
+            drawer.classList.remove('is-open');
+            overlay.classList.remove('is-open');
+        } else {
+            renderCartDrawer();
+            drawer.classList.add('is-open');
+            overlay.classList.add('is-open');
+        }
+    }
+
+    function renderCartDrawer() {
+        const body = document.getElementById('cartBody');
+        const footer = document.getElementById('cartFooter');
+        if (!body) return;
+
+        const cart = getCart();
+        if (cart.length === 0) {
+            body.innerHTML = `
+                <div class="cart__empty" style="text-align:center; padding: 40px 20px; opacity: 0.5;">
+                    <p>Your cart is empty</p>
+                </div>`;
+            footer.innerHTML = '';
+            return;
+        }
+
+        body.innerHTML = cart.map((item, index) => `
+            <div class="cart__item" style="display:flex; justify-content:space-between; align-items:center; padding:15px; border-bottom:1px solid rgba(0,0,0,0.05);">
+                <div>
+                    <div style="font-weight:600; font-size:14px;">${item.name}</div>
+                    <div style="font-size:12px; opacity:0.6;">${item.type} × ${item.quantity}</div>
+                </div>
+                <button onclick="removeFromHomeCart(${index})" style="background:none; border:none; color:#ff4444; cursor:pointer; font-size:12px;">Remove</button>
+            </div>`).join('');
+
+        footer.innerHTML = `
+            <div style="padding:20px; border-top:1px solid rgba(0,0,0,0.1);">
+                <button onclick="window.location.href='checkout.php'" style="width:100%; background:#4a2c5e; color:white; border:none; padding:12px; border-radius:4px; cursor:pointer; font-weight:600;">
+                    Proceed to Checkout
+                </button>
+            </div>`;
+    }
+
+    function removeFromHomeCart(index) {
+        let cart = getCart();
+        cart.splice(index, 1);
+        saveCart(cart);
+        updateCartBadge();
+        renderCartDrawer();
+    }
+
+    // Override the global showCartPopup to also open the drawer for better feedback
+    const originalShowCartPopup = window.showCartPopup;
+    window.showCartPopup = function(msg) {
+        if (typeof originalShowCartPopup === 'function') originalShowCartPopup(msg);
+        renderCartDrawer();
+        const drawer = document.getElementById('cartDrawer');
+        if (drawer && !drawer.classList.contains('is-open')) {
+            toggleCart();
+        }
+    };
+</script>
+
+</body>
+</html>
