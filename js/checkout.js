@@ -182,59 +182,37 @@ function submitOrder() {
   const form = document.getElementById("checkoutForm");
   const formData = new FormData(form);
 
-  fetch("includes/process_order.php", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      spinner.classList.remove("active");
-      if (data.success) {
-        msg.className = "order-msg success";
-        msg.textContent = "✓ Order details saved! Redirecting to WhatsApp...";
-        btn.textContent = "Redirecting...";
-        showToast("Order saved! Opening WhatsApp...");
+  // Skip PHP processing for static gh-pages hosting
+  spinner.classList.remove("active");
+  msg.className = "order-msg success";
+  msg.textContent = "✓ Order details ready! Redirecting to WhatsApp...";
+  btn.textContent = "Redirecting...";
+  showToast("Order ready! Opening WhatsApp...");
 
-        // WhatsApp Redirect
-        const phoneNumber = "201070495213"; // Egyptian format
-        let summary = `Hello Darine, I would like to place an order:\n\n`;
-        summary += `*Customer:* ${formData.get("first_name")} ${formData.get("last_name")}\n`;
-        summary += `*Address:* ${formData.get("address")}\n\n`;
-        summary += `*Order Items:*\n`;
+  // WhatsApp Redirect
+  const phoneNumber = "201070495213"; // Egyptian format
+  let summary = `Hello Darine, I would like to place an order:\n\n`;
+  summary += `*Customer:* ${formData.get("first_name")} ${formData.get("last_name")}\n`;
+  summary += `*Address:* ${formData.get("address")}\n\n`;
+  summary += `*Order Items:*\n`;
 
-        cart.items.forEach((item) => {
-          summary += `- ${item.name} (${item.quantity}x) - $${item.price}\n`;
-        });
+  cart.items.forEach((item) => {
+    summary += `- ${item.name} (${item.quantity}x) - $${item.price}\n`;
+  });
 
-        const subtotal = cart.items.reduce(
-          (sum, i) => sum + i.price * i.quantity,
-          0,
-        );
-        summary += `\n*Total:* $${subtotal + cart.shipping}`;
+  const subtotal = cart.items.reduce(
+    (sum, i) => sum + i.price * i.quantity,
+    0,
+  );
+  summary += `\n*Total:* $${subtotal + cart.shipping}`;
 
-        const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(summary)}`;
+  const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(summary)}`;
 
-        // Clear cart after a short delay and redirect
-        localStorage.removeItem("darineCart");
-        setTimeout(() => {
-          window.location.href = waUrl;
-        }, 1500);
-      } else {
-        msg.className = "order-msg error";
-        msg.textContent =
-          data.message || "Something went wrong. Please try again.";
-        btn.disabled = false;
-      }
-    })
-    .catch(() => {
-      spinner.classList.remove("active");
-      if (msg) {
-        msg.className = "order-msg error";
-        msg.textContent =
-          "Network error. Please check your connection and try again.";
-      }
-      btn.disabled = false;
-    });
+  // Clear cart after a short delay and redirect
+  localStorage.removeItem("darineCart");
+  setTimeout(() => {
+    window.location.href = waUrl;
+  }, 1500);
 }
 
 /* Search functionality handled by cart_global.js */

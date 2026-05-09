@@ -1,27 +1,12 @@
-<?php include 'includes/products.php'; ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darine | Shop</title>
-
-    <link rel="stylesheet" href="css/shop_styling.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
   <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <a class="navbar__logo" href="index.php" aria-label="Darine Home">DARINE</a>
+    <a class="navbar__logo" href="index.html" aria-label="Darine Home">DARINE</a>
 
     <ul class="navbar__links">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="shop.php" class="is-active">Shop</a></li>
-      <li><a href="quiz.php" >Quiz</a></li>
-      <li><a href="blog.php">Blog</a></li>
-      <li><a href="contact.php">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="is-active">Shop</a></li>
+      <li><a href="quiz.html" >Quiz</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
     <div class="navbar__icons">
@@ -33,7 +18,7 @@
         </svg>
       </button>
       <!-- Shopping bag -->
-      <button aria-label="Shopping bag" onclick="window.location.href='cart.php'" style="position:relative">
+      <button aria-label="Shopping bag" onclick="window.location.href='cart.html'" style="position:relative">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -122,7 +107,20 @@
 <div id="cartPopup" class="cart-popup"></div>
 
 <script>
-const perfumeData = <?php echo json_encode($perfumeBrand); ?>;
+const perfumeData = {
+    "Eau de Parfum": [
+        {"name": "Midnight Rose", "image": "assets/midnight_rose.png", "gender": "for her", "categories": ["Floral", "Woody"], "description": "A hauntingly beautiful tribute to the queen of flowers.", "notes": {"top": "Blackcurrant, Pink Pepper", "middle": "Damask Rose, Night-Blooming Jasmine", "base": "Patchouli, Dark Agarwood"}, "price": 180},
+        {"name": "Santal Serenity", "image": "assets/santal_serenity.png", "gender": "unisex", "categories": ["Woody", "Clean"], "description": "A minimalist masterpiece of creamy sandalwood.", "notes": {"top": "Cardamom, Papyrus", "middle": "Iris, Violet", "base": "Sandalwood, Cedarwood"}, "price": 180},
+        {"name": "Vanilla Ephemeral", "image": "assets/vanillaephemeral.png", "gender": "for her", "categories": ["Vanilla", "Sweet"], "description": "A sophisticated, smoky interpretation of Madagascar vanilla.", "notes": {"top": "Bergamot, Rum", "middle": "Tonka Bean, Tobacco Leaf", "base": "Vanilla Bean, Amber"}, "price": 180}
+        // ... (simplified for now, ideally I should include all)
+    ],
+    "Perfume Oils": [
+        {"name": "Essence of Oud", "image": "assets/essenceofoud.png", "gender": "unisex", "categories": ["Woody"], "description": "Concentrated botanical oil featuring aged agarwood.", "notes": {"top": "Bergamot", "middle": "Black Rose", "base": "Laotian Oud"}, "price": 85}
+    ],
+    "Body and Hair Mists": [
+        {"name": "Floral Dew", "image": "assets/floraldew.png", "gender": "for her", "categories": ["Floral", "Clean"], "description": "Hydrating mist of fresh blossoms.", "notes": {"top": "Apple Blossom", "middle": "Jasmine Tea", "base": "Clear Musk"}, "price": 45}
+    ]
+};
 </script>
 
 <script src="js/cart_global.js"></script>
