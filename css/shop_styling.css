@@ -7,6 +7,9 @@ html {
     --text-main: #1a1a1a;
     --text-muted: #666;
     --purple: #4a2c5e;
+    --purple-light: #8d5fa8;
+    --border: rgba(74,44,94,0.1);
+    --transition: 0.3s ease;
     --soft-box: #ece6e1;
     --font-stylish: 'Playfair Display', serif;
     --font-modern: 'Inter', sans-serif;
