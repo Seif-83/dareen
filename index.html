@@ -70,15 +70,34 @@
 <!-- Cart Popup Notification -->
 <div id="cartPopup" class="cart-popup"></div>
 
-<!-- Date -->
-<p id="date" style="
+<!-- Countdown Timer -->
+<div id="countdown" style="
     text-align:center;
-    margin-top:10px;
+    margin-top:20px;
     font-family:'Jost', sans-serif;
-    font-size:13px;
-    letter-spacing:2px;
-    color:#7a6e68;
-"></p>
+    letter-spacing:1px;
+    color:var(--purple);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+">
+    <div class="time-box">
+        <span id="days" style="font-size: 24px; font-weight: 600; display: block;">00</span>
+        <span style="font-size: 10px; text-transform: uppercase; opacity: 0.6;">Days</span>
+    </div>
+    <div class="time-box">
+        <span id="hours" style="font-size: 24px; font-weight: 600; display: block;">00</span>
+        <span style="font-size: 10px; text-transform: uppercase; opacity: 0.6;">Hours</span>
+    </div>
+    <div class="time-box">
+        <span id="minutes" style="font-size: 24px; font-weight: 600; display: block;">00</span>
+        <span style="font-size: 10px; text-transform: uppercase; opacity: 0.6;">Mins</span>
+    </div>
+    <div class="time-box">
+        <span id="seconds" style="font-size: 24px; font-weight: 600; display: block;">00</span>
+        <span style="font-size: 10px; text-transform: uppercase; opacity: 0.6;">Secs</span>
+    </div>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -167,11 +186,30 @@
 
 </section>
 
-<!-- Script -->
+<!-- Script for Countdown -->
 <script>
-    const dateElement = document.getElementById("date");
-    const today = new Date();
-    dateElement.innerText = "Today: " + today.toLocaleDateString();
+    // Set the date we're counting down to (e.g., June 1st, 2026)
+    const countdownDate = new Date("June 1, 2026 00:00:00").getTime();
+
+    const updateCountdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+        if (distance < 0) {
+            clearInterval(updateCountdown);
+            document.getElementById("countdown").innerHTML = "LAUNCHED";
+        }
+    }, 1000);
 </script>
 
 <script src="js/cart_global.js"></script>
